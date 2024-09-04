@@ -22,7 +22,7 @@ const Login = ({ setLoginStatus }) => {
       setUser(user);
       localStorage.setItem("user", JSON.stringify(user));
 
-      navigate("/user", { replace: true });
+      navigate("/", { replace: true });
     } catch (err) {
       console.log(err);
     }
