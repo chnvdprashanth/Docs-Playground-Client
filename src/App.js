@@ -37,8 +37,8 @@ const AppRoutes = () => {
 
   return (
     <Routes>
+      <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/user" element={<Home />} />
     </Routes>
   );
 };
