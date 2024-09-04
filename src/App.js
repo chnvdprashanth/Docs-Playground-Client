@@ -10,10 +10,12 @@ import Home from "./container/Home";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Login from "./components/Login";
 import { useGetUser } from "./contexts/User";
+import { REACT_APP_GOOGLE_CLIENT_ID } from "./utils/config";
 
 const App = () => {
+  const clientId = REACT_APP_GOOGLE_CLIENT_ID;
   return (
-    <GoogleOAuthProvider clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}>
+    <GoogleOAuthProvider clientId={clientId}>
       <Router>
         <AppRoutes/>
       </Router>
