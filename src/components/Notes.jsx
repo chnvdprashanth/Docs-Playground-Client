@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IoCheckboxOutline, IoImageOutline } from "react-icons/io5";
 import { LuRedo2, LuUndo2 } from "react-icons/lu";
-import { useNote } from "../contexts/Notes";
+import { useNotes } from "../contexts/Notes";
 
-const Notes = ({ setNotes, setToggleNotes }) => {
+const Notes = ({ setToggleNotes }) => {
   const textAreaRef = useRef(null);
-  const { doc, setDoc } = useNote();
+  const { setNotes } = useNotes();
+  const [doc, setDoc] = useState({ title: "", desc: "", image: "" });
 
   // const [title, setTitle] = useState("");
   // const [desc, setDesc] = useState("");
