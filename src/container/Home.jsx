@@ -18,7 +18,7 @@ const Home = () => {
           position="bottom-right"
           autoClose={3000}
           style={{
-            width: "90%", 
+            width: "40%", 
             maxWidth: "600px",
           }}
         />
