@@ -64,8 +64,8 @@ const OpenNote = () => {
   });
 
   useEffect(()=>{
-    console.log(doc);
-  },[doc]);
+    
+  },[notes]);
 
   return (
     <div className="fixed inset-0 z-[9999] flex justify-center items-center bg-black bg-opacity-50">
