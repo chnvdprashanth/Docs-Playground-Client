@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useGetUser } from "../contexts/User";
 
 const User = () => {
   const { user } = useGetUser();
-  const imgURL = "";
+  const [imgURL,setImgURL] = useState("");
 
   const handleUserImage = async () => {
     try {
@@ -12,7 +12,7 @@ const User = () => {
       );
       const imgBlob = res.blob();
 
-      imgURL = URL.createObjectURL(imgBlob);
+      setImgURL(URL.createObjectURL(imgBlob));
     } catch (err) {
       console.error("Error in Fetching Profile Image: ",err);
     }
