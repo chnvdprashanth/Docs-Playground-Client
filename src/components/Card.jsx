@@ -35,7 +35,10 @@ const Card = ({ reference, note, id, notes, setNotes }) => {
 
   const handleDeleteNote = async (e) => {
     try {
-      await fetch(`https://docs-playground.onrender.com/note/${id}`);
+      await fetch(`https://docs-playground.onrender.com/note/${id}`,{
+        method: "DELETE",
+        credentials: "include",
+      });
 
       setNotes(notes.filter((n) => n._id !== id));
     } catch (err) {
