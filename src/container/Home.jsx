@@ -3,6 +3,7 @@ import Background from "../components/Background";
 import Foreground from "../components/Foreground";
 import { NotesProvider } from "../contexts/Notes";
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
         <Background />
         <Foreground />
         <Outlet />
+        <ToastContainer theme="dark" newestOnTop={true} />
       </div>
     </NotesProvider>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { IoCheckboxOutline, IoImageOutline } from "react-icons/io5";
 import { LuRedo2, LuUndo2 } from "react-icons/lu";
 import { useNavigate, useParams } from "react-router-dom";
@@ -132,7 +132,6 @@ const OpenNote = () => {
           </div>
         </div>
       </div>
-      <ToastContainer theme={"dark"} newestOnTop={true} />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { FaFileAlt } from "react-icons/fa";
 import { LuDownload } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
@@ -114,7 +114,6 @@ const Card = ({ reference, note, id }) => {
         ) : null}
       </div>
     </motion.div>
-    <ToastContainer theme={"dark"} newestOnTop={true} />
     </>
   );
 };
