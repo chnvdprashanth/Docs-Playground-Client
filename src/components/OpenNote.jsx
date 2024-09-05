@@ -8,11 +8,13 @@ const OpenNote = () => {
   const textAreaRef = useRef(null);
   const { noteId } = useParams();
   const { notes, setNotes } = useNotes();
+  console.log(notes);
   const [doc, setDoc] = useState(() => {
     return notes
-      ? notes.filter((note) => note._id === noteId)
+      ? notes.find((note) => note._id === noteId)
       : { title: "", desc: "", image: "" };
   });
+  console.log(doc);
 
   const handleUpdateNote = async () => {
     try {
