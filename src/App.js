@@ -17,7 +17,7 @@ const App = () => {
   return (
     <GoogleOAuthProvider clientId={clientId}>
       <Router>
-        <AppRoutes/>
+        <AppRoutes />
       </Router>
     </GoogleOAuthProvider>
   );
@@ -39,9 +39,10 @@ const AppRoutes = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/note/:noteId" element={<OpenNote />} />
+      <Route path="/" element={<Home />}>
+        <Route path="note/:noteId" element={<OpenNote />} />
+      </Route>
     </Routes>
   );
 };
