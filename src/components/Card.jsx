@@ -33,8 +33,6 @@ const Card = ({ reference, note, id }) => {
       link.download = `${note.title}.txt`;
 
       link.click();
-      toast("Download Complete🎉",{type:"success"})
-
       URL.revokeObjectURL(link.href);
     } catch (err) {
       toast("Download Failed😥",{type:"error"});

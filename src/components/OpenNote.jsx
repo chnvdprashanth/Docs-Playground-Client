@@ -121,10 +121,10 @@ const OpenNote = () => {
               <LuUndo2 className="w-4 h-4 text-white cursor-pointer" />
               <LuRedo2 className="w-4 h-4 text-white cursor-pointer" />
             </div>
-            <div className="flex justify-center items-center">
+            <div className="w-full flex justify-center items-center">
               <p
                 onClick={handleUpdateNote}
-                className="text-base cursor-pointer font-normal text-white bg-zinc-800 hover:bg-zinc-600 hover:duration-300 px-4 py-1 rounded-md"
+                className="text-base text-center cursor-pointer font-normal text-white bg-zinc-800 hover:bg-zinc-600 hover:duration-300 px-4 py-1 rounded-md"
               >
                 Save & Close
               </p>
