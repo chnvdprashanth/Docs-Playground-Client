@@ -15,7 +15,7 @@ const Notes = ({ setNotes, setToggleNotes }) => {
     }
 
     try {
-      const res = await fetch("https://docs-playground.onrender.com/user", {
+      const res = await fetch("https://docs-playground.onrender.com/", {
         method: "POST",
         credentials: "include",
         headers: {
