@@ -10,9 +10,12 @@ const OpenNote = () => {
   const { notes, setNotes } = useNotes();
   console.log(notes);
   const [doc, setDoc] = useState(() => {
-    return notes
-      ? notes.find((note) => note._id === noteId)
-      : { title: "", desc: "", image: "" };
+    if (notes && noteId) {
+        const foundNote = notes.find((note) => note._id === noteId);
+        console.log("Found Note:", foundNote);
+        return foundNote || { title: "", desc: "", image: "" };
+      }
+      return { title: "", desc: "", image: "" };
   });
   console.log(doc);
 
