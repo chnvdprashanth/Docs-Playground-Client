@@ -59,9 +59,9 @@ const OpenNote = () => {
   });
 
   return (
-    <div className="w-full h-full absolute z-[9999] flex justify-center items-center bg-transparent">
-      <div className="w-full flex flex-col bg-zinc-800">
-        <div className="w-full flex flex-col gap-y-2">
+    <div className="fixed inset-0 z-[9999] flex justify-center items-center bg-black bg-opacity-50">
+      <div className="w-11/12 md:w-3/5 lg:w-2/5 bg-zinc-900 p-6 rounded-lg shadow-lg">
+        <div className="flex flex-col gap-y-2">
           <input
             type="text"
             placeholder="Title here"
@@ -74,7 +74,7 @@ const OpenNote = () => {
                 title: e.target.value,
               }))
             }
-            className="outline-none bg-zinc-800 py-2"
+            className="outline-none bg-zinc-800 py-2 px-4 text-lg rounded-md"
           />
           <textarea
             ref={textAreaRef}
@@ -89,11 +89,11 @@ const OpenNote = () => {
                 desc: e.target.value,
               }))
             }
-            className="outline-none text-base bg-zinc-800"
+            className="outline-none text-base bg-zinc-800 py-2 px-4 rounded-md"
             style={{ resize: "none" }}
           />
         </div>
-        <div className="w-full flex items-center gap-x-4 max-sm:gap-x-2 p-2">
+        <div className="w-full flex items-center gap-x-4 max-sm:gap-x-2 mt-4 p-2">
           <div className="w-full flex items-center gap-x-4 max-sm:gap-x-2">
             <IoImageOutline
               className="w-6 h-6 cursor-pointer"
@@ -103,12 +103,12 @@ const OpenNote = () => {
             <LuUndo2 className="w-4 h-4 text-white cursor-pointer" />
             <LuRedo2 className="w-4 h-4 text-white cursor-pointer" />
           </div>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center ml-auto">
             <p
               onClick={handleUpdateNote}
-              className="text-base cursor-pointer font-normal"
+              className="text-base cursor-pointer font-normal text-white bg-zinc-700 px-4 py-1 rounded-md"
             >
-              Close
+              Save & Close
             </p>
           </div>
         </div>
