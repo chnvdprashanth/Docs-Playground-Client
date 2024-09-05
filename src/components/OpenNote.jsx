@@ -112,7 +112,7 @@ const OpenNote = () => {
             />
           </div>
           <div className="w-full flex items-center justify-between gap-x-4 p-2">
-            <div className="w-full flex items-center gap-x-4">
+            <div className="w-1/2 flex items-center gap-x-4">
               <IoImageOutline
                 className="w-6 h-6 cursor-pointer"
                 onClick={() => handleImageInput}
@@ -121,7 +121,7 @@ const OpenNote = () => {
               <LuUndo2 className="w-4 h-4 text-white cursor-pointer" />
               <LuRedo2 className="w-4 h-4 text-white cursor-pointer" />
             </div>
-            <div className="w-full flex justify-center items-center">
+            <div className="w-1/2 flex justify-end items-center">
               <p
                 onClick={handleUpdateNote}
                 className="text-base text-center cursor-pointer font-normal text-white bg-zinc-800 hover:bg-zinc-600 hover:duration-300 px-4 py-1 rounded-md"
