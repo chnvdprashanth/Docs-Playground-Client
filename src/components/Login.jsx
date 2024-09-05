@@ -13,6 +13,7 @@ const Login = ({ setLoginStatus }) => {
 
       const res = await fetch("https://docs-playground.onrender.com/login", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
