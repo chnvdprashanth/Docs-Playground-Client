@@ -68,7 +68,7 @@ const Card = ({ reference, note, id, notes, setNotes }) => {
         </div>
       </div>
       <div className="w-full flex flex-col gap-y-1 h-auto overflow-hidden">
-        <h3 className="text-base capitalize">{`${note.title}`}</h3>
+        <h3 className="text-base capitalize text-ellipsis line-clamp-1">{`${note.title}`}</h3>
         <p className="text-sm font-normal overflow-hidden text-ellipsis line-clamp-4">{`${note.desc}`}</p>
       </div>
       <div className="footer absolute w-full bottom-0 left-0">
