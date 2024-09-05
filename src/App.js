@@ -11,7 +11,6 @@ import Login from "./components/Login";
 import { useGetUser } from "./contexts/User";
 import { REACT_APP_GOOGLE_CLIENT_ID } from "./utils/config";
 import OpenNote from "./components/OpenNote";
-import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const clientId = REACT_APP_GOOGLE_CLIENT_ID;

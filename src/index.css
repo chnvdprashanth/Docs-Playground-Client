@@ -7,6 +7,12 @@
 } */
 
 .no-scrollbar::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
-  
+
+@media (max-width: 768px) {
+  .Toastify__toast-container {
+    width: 90%; /* Adjust width on mobile */
+    left: 5%; /* Center horizontally */
+  }
+}
