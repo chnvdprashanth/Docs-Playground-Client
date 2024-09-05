@@ -59,8 +59,8 @@ const OpenNote = () => {
   });
 
   return (
-    <div className="absolute left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 bg-transparent">
-      <div className="w-full flex flex-col bg-gray-800">
+    <div className="absolute z-[9999] left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 bg-zinc-800">
+      <div className="w-full flex flex-col">
         <div className="w-full flex flex-col gap-y-2">
           <input
             type="text"
