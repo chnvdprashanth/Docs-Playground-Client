@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import { IoCheckboxOutline, IoImageOutline } from "react-icons/io5";
 import { LuRedo2, LuUndo2 } from "react-icons/lu";
 import { useNavigate, useParams } from "react-router-dom";
@@ -35,8 +36,12 @@ const OpenNote = () => {
           note._id === updatedNote._id ? updatedNote : note
         )
       );
+      toast("Saved🎉",{type:"success"})
       navigate("/", { replace: true });
-    } catch (err) {}
+    } catch (err) {
+        toast("Error Occured",{type:"error"})
+        console.log("Error while trying to save: ",err);
+    }
   };
 
   const handleImageInput = (e) => {
@@ -71,61 +76,64 @@ const OpenNote = () => {
   }, [notes, noteId]);
 
   return (
-    <div className="fixed inset-0 z-[9999] flex justify-center items-center bg-black bg-opacity-50">
-      <div className="w-11/12 md:w-3/5 lg:w-2/5 bg-zinc-800 p-4 rounded-lg shadow-lg text-zinc-50 max-h-[90vh] overflow-auto no-scrollbar">
-        <div className="flex flex-col gap-y-2">
-          <input
-            type="text"
-            placeholder="Title here"
-            name="docs-title"
-            id="docs-title"
-            value={doc.title}
-            onChange={(e) =>
-              setDoc((prevDoc) => ({
-                ...prevDoc,
-                title: e.target.value,
-              }))
-            }
-            className="outline-none bg-zinc-800 py-2 px-4 text-lg"
-          />
-          <textarea
-            ref={textAreaRef}
-            type="text"
-            name="docs-text"
-            id="docs-text"
-            placeholder="Take a note..."
-            value={doc.desc}
-            onChange={(e) =>
-              setDoc((prevDoc) => ({
-                ...prevDoc,
-                desc: e.target.value,
-              }))
-            }
-            className="outline-none text-base bg-zinc-800 py-2 px-4 resize-none no-scrollbar"
-            style={{ maxHeight: "60vh", overflowY: "auto" }}
-          />
-        </div>
-        <div className="w-full flex items-center justify-between gap-x-4 p-2">
-          <div className="w-full flex items-center gap-x-4">
-            <IoImageOutline
-              className="w-6 h-6 cursor-pointer"
-              onClick={() => handleImageInput}
+    <>
+      <div className="fixed inset-0 z-[9999] flex justify-center items-center bg-black bg-opacity-50">
+        <div className="w-11/12 md:w-3/5 lg:w-2/5 bg-zinc-800 p-4 rounded-lg shadow-lg text-zinc-50 max-h-[90vh] overflow-auto no-scrollbar">
+          <div className="flex flex-col gap-y-2">
+            <input
+              type="text"
+              placeholder="Title here"
+              name="docs-title"
+              id="docs-title"
+              value={doc.title}
+              onChange={(e) =>
+                setDoc((prevDoc) => ({
+                  ...prevDoc,
+                  title: e.target.value,
+                }))
+              }
+              className="outline-none bg-zinc-800 py-2 px-4 text-lg"
             />
-            <IoCheckboxOutline className="w-6 h-6 cursor-pointer" />
-            <LuUndo2 className="w-4 h-4 text-white cursor-pointer" />
-            <LuRedo2 className="w-4 h-4 text-white cursor-pointer" />
+            <textarea
+              ref={textAreaRef}
+              type="text"
+              name="docs-text"
+              id="docs-text"
+              placeholder="Take a note..."
+              value={doc.desc}
+              onChange={(e) =>
+                setDoc((prevDoc) => ({
+                  ...prevDoc,
+                  desc: e.target.value,
+                }))
+              }
+              className="outline-none text-base bg-zinc-800 py-2 px-4 resize-none no-scrollbar"
+              style={{ maxHeight: "60vh", overflowY: "auto" }}
+            />
           </div>
-          <div className="flex justify-center items-center">
-            <p
-              onClick={handleUpdateNote}
-              className="text-base cursor-pointer font-normal text-white bg-zinc-800 hover:bg-zinc-600 hover:duration-300 px-4 py-1 rounded-md"
-            >
-              Save & Close
-            </p>
+          <div className="w-full flex items-center justify-between gap-x-4 p-2">
+            <div className="w-full flex items-center gap-x-4">
+              <IoImageOutline
+                className="w-6 h-6 cursor-pointer"
+                onClick={() => handleImageInput}
+              />
+              <IoCheckboxOutline className="w-6 h-6 cursor-pointer" />
+              <LuUndo2 className="w-4 h-4 text-white cursor-pointer" />
+              <LuRedo2 className="w-4 h-4 text-white cursor-pointer" />
+            </div>
+            <div className="flex justify-center items-center">
+              <p
+                onClick={handleUpdateNote}
+                className="text-base cursor-pointer font-normal text-white bg-zinc-800 hover:bg-zinc-600 hover:duration-300 px-4 py-1 rounded-md"
+              >
+                Save & Close
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <ToastContainer theme={"dark"} newestOnTop={true} />
+    </>
   );
 };
 

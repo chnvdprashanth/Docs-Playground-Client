@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import { IoCheckboxOutline, IoImageOutline } from "react-icons/io5";
 import { LuRedo2, LuUndo2 } from "react-icons/lu";
 import { useNotes } from "../contexts/Notes";
@@ -35,7 +36,11 @@ const Notes = ({ setToggleNotes }) => {
 
       setNotes((prevNote) => [...prevNote, note]);
       setToggleNotes(false);
-    } catch (err) {}
+      toast("Created🎉",{type:"success"})
+    } catch (err) {
+      toast("Failed to create😥",{type:"error"});
+      console.log("Creating note failed: ",err);
+    }
   };
 
   const handleImageInput = (e) => {

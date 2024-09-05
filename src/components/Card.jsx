@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import { FaFileAlt } from "react-icons/fa";
 import { LuDownload } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
@@ -11,7 +12,7 @@ const Card = ({ reference, note, id }) => {
   const [isDownloadActive, setIsDownloadActive] = useState(true);
   const [isDownloadTagVisible, setIsDownloadTagVisible] = useState(false);
   const byteSize = (str) => new Blob([str]).size;
-  const { notes,setNotes } = useNotes();
+  const { notes, setNotes } = useNotes();
 
   const handleDownloadButton = () => {
     if (!isDownloadActive) {
@@ -24,31 +25,40 @@ const Card = ({ reference, note, id }) => {
   };
 
   const handleDownloadFile = () => {
-    const note_blob = new Blob([note.desc], { type: "text/plain" });
-    const link = document.createElement("a");
+    try {
+      const note_blob = new Blob([note.desc], { type: "text/plain" });
+      const link = document.createElement("a");
 
-    link.href = URL.createObjectURL(note_blob);
-    link.download = `${note.title}.txt`;
+      link.href = URL.createObjectURL(note_blob);
+      link.download = `${note.title}.txt`;
 
-    link.click();
+      link.click();
+      toast("Download Complete🎉",{type:"success"})
 
-    URL.revokeObjectURL(link.href);
+      URL.revokeObjectURL(link.href);
+    } catch (err) {
+      toast("Download Failed😥",{type:"error"});
+      console.error("Failed to download: ",err);
+    }
   };
 
   const handleDeleteNote = async (e) => {
     try {
-      await fetch(`https://docs-playground.onrender.com/note/${id}`,{
+      await fetch(`https://docs-playground.onrender.com/note/${id}`, {
         method: "DELETE",
         credentials: "include",
       });
 
       setNotes(notes.filter((n) => n._id !== id));
+      toast("Deleted😌",{type:"success"})
     } catch (err) {
+      toast("Failed to delete😥",{type:"error"})
       console.error(err);
     }
   };
 
   return (
+    <>
     <motion.div
       drag
       dragConstraints={reference}
@@ -104,6 +114,8 @@ const Card = ({ reference, note, id }) => {
         ) : null}
       </div>
     </motion.div>
+    <ToastContainer theme={"dark"} newestOnTop={true} />
+    </>
   );
 };
 
