@@ -28,9 +28,13 @@ const OpenNote = () => {
           }),
         }
       );
-      const note = await res.json();
+      const updatedNote = await res.json();
 
-      setNotes((prevNote) => [...prevNote, note]);
+      setNotes((prevNotes) =>
+        prevNotes.map((note) =>
+          note._id === updatedNote._id ? updatedNote : note
+        )
+      );
       navigate("/", { replace: true });
     } catch (err) {}
   };
