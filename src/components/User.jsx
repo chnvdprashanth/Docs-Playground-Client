@@ -14,7 +14,7 @@ const User = () => {
             credentials: "include"
           }
         );
-        const imgBlob = res.blob();
+        const imgBlob = await res.blob();
   
         setImgURL(URL.createObjectURL(imgBlob));
       } catch (err) {
