@@ -5,11 +5,13 @@ import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
+import { useNotes } from "../contexts/Notes";
 
-const Card = ({ reference, note, id, notes, setNotes }) => {
+const Card = ({ reference, note, id }) => {
   const [isDownloadActive, setIsDownloadActive] = useState(true);
   const [isDownloadTagVisible, setIsDownloadTagVisible] = useState(false);
   const byteSize = (str) => new Blob([str]).size;
+  const { notes,setNotes } = useNotes();
 
   const handleDownloadButton = () => {
     if (!isDownloadActive) {

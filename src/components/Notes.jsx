@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IoCheckboxOutline, IoImageOutline } from "react-icons/io5";
 import { LuRedo2, LuUndo2 } from "react-icons/lu";
-import { useNote } from "../contexts/Note";
+import { useNote } from "../contexts/Notes";
 
 const Notes = ({ setNotes, setToggleNotes }) => {
   const textAreaRef = useRef(null);
