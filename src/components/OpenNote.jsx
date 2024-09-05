@@ -10,14 +10,7 @@ const OpenNote = () => {
   const { notes, setNotes } = useNotes();
   console.log(noteId);
   console.log(notes);
-  const [doc, setDoc] = useState(() => {
-    if (notes && noteId) {
-        const foundNote = notes.find((note) => note._id === noteId);
-        console.log("Found Note:", foundNote);
-        return foundNote || { title: "", desc: "", image: "" };
-      }
-      return { title: "", desc: "", image: "" };
-  });
+  const [doc, setDoc] = useState({ title: "", desc: "", image: "" });
 
   const handleUpdateNote = async () => {
     try {
@@ -63,9 +56,16 @@ const OpenNote = () => {
     };
   });
 
-  useEffect(()=>{
-    
-  },[notes]);
+  useEffect(() => {
+    setDoc(() => {
+            if (notes && noteId) {
+                const foundNote = notes.find((note) => note._id === noteId);
+                console.log("Found Note:", foundNote);
+                return foundNote || { title: "", desc: "", image: "" };
+              }
+              return
+    });
+  }, [notes,noteId]);
 
   return (
     <div className="fixed inset-0 z-[9999] flex justify-center items-center bg-black bg-opacity-50">
@@ -99,7 +99,7 @@ const OpenNote = () => {
               }))
             }
             className="outline-none text-base bg-zinc-800 py-2 px-4 resize-none no-scrollbar"
-            style={{ maxHeight: '60vh', overflowY: 'auto' }}
+            style={{ maxHeight: "60vh", overflowY: "auto" }}
           />
         </div>
         <div className="w-full flex items-center justify-between gap-x-4 p-2">
