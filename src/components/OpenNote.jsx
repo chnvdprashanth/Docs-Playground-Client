@@ -1,15 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IoCheckboxOutline, IoImageOutline } from "react-icons/io5";
 import { LuRedo2, LuUndo2 } from "react-icons/lu";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useNotes } from "../contexts/Notes";
 
 const OpenNote = () => {
   const textAreaRef = useRef(null);
+  const navigate = useNavigate();
   const { noteId } = useParams();
   const { notes, setNotes } = useNotes();
-  console.log(noteId);
-  console.log(notes);
   const [doc, setDoc] = useState({ title: "", desc: "", image: "" });
 
   const handleUpdateNote = async () => {
@@ -32,6 +31,7 @@ const OpenNote = () => {
       const note = await res.json();
 
       setNotes((prevNote) => [...prevNote, note]);
+      navigate("/", { replace: true });
     } catch (err) {}
   };
 
@@ -58,14 +58,13 @@ const OpenNote = () => {
 
   useEffect(() => {
     setDoc(() => {
-            if (notes && noteId) {
-                const foundNote = notes.find((note) => note._id === noteId);
-                console.log("Found Note:", foundNote);
-                return foundNote || { title: "", desc: "", image: "" };
-              }
-              return
+      if (notes && noteId) {
+        const foundNote = notes.find((note) => note._id === noteId);
+        return foundNote || { title: "", desc: "", image: "" };
+      }
+      return;
     });
-  }, [notes,noteId]);
+  }, [notes, noteId]);
 
   return (
     <div className="fixed inset-0 z-[9999] flex justify-center items-center bg-black bg-opacity-50">
