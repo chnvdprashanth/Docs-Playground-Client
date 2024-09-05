@@ -15,7 +15,7 @@ const Notes = ({ setNotes, setToggleNotes }) => {
     }
 
     try {
-      await fetch("https://docs-playground.onrender.com/user", {
+      const res = await fetch("https://docs-playground.onrender.com/user", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -27,8 +27,9 @@ const Notes = ({ setNotes, setToggleNotes }) => {
           image: image,
         }),
       });
+      const note = await res.json();
 
-      // setNotes((prevNote) => [...prevNote, note]);
+      setNotes((prevNote) => [...prevNote, note]);
       setToggleNotes(false);
     } catch (err) {}
   };
