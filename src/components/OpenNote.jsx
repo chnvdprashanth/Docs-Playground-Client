@@ -60,7 +60,7 @@ const OpenNote = () => {
 
   return (
     <div className="fixed inset-0 z-[9999] flex justify-center items-center bg-black bg-opacity-50">
-      <div className="w-11/12 md:w-3/5 lg:w-2/5 bg-zinc-800 p-4 rounded-lg shadow-lg text-zinc-50 max-h-[90vh] overflow-auto">
+      <div className="w-11/12 md:w-3/5 lg:w-2/5 bg-zinc-800 p-4 rounded-lg shadow-lg text-zinc-50 max-h-[90vh] overflow-auto no-scrollbar">
         <div className="flex flex-col gap-y-2">
           <input
             type="text"
@@ -89,7 +89,7 @@ const OpenNote = () => {
                 desc: e.target.value,
               }))
             }
-            className="outline-none text-base bg-zinc-800 py-2 px-4 resize-none"
+            className="outline-none text-base bg-zinc-800 py-2 px-4 resize-none no-scrollbar"
             style={{ maxHeight: '60vh', overflowY: 'auto' }}
           />
         </div>
