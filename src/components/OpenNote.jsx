@@ -44,9 +44,23 @@ const OpenNote = () => {
     }));
   };
 
+  useEffect(() => {
+    const textArea = textAreaRef.current;
+    const handleInput = () => {
+      textArea.style.height = "auto";
+      textArea.style.height = `${textArea.scrollHeight}px`;
+    };
+
+    textArea?.addEventListener("input", handleInput);
+
+    return () => {
+      textArea?.removeEventListener("input", handleInput);
+    };
+  });
+
   return (
     <div className="fixed inset-0 z-[9999] flex justify-center items-center bg-black bg-opacity-50">
-      <div className="w-11/12 md:w-3/5 lg:w-2/5 bg-zinc-800 p-4 rounded-lg shadow-lg text-zinc-50 max-h-[90vh] overflow-hidden">
+      <div className="w-11/12 md:w-3/5 lg:w-2/5 bg-zinc-800 p-4 rounded-lg shadow-lg text-zinc-50 max-h-[90vh] overflow-auto">
         <div className="flex flex-col gap-y-2">
           <input
             type="text"
@@ -75,8 +89,8 @@ const OpenNote = () => {
                 desc: e.target.value,
               }))
             }
-            className="outline-none text-base bg-zinc-800 py-2 px-4 max-h-[60vh] overflow-y-scroll"
-            style={{ resize: "none" }}
+            className="outline-none text-base bg-zinc-800 py-2 px-4 resize-none"
+            style={{ maxHeight: '60vh', overflowY: 'auto' }}
           />
         </div>
         <div className="w-full flex items-center justify-between gap-x-4 p-2">
