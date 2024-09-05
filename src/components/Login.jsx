@@ -2,6 +2,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { createOrGetUser } from "../utils/client";
 import { useNavigate } from "react-router-dom";
 import { useGetUser } from "../contexts/User";
+import webLogo from "../assets/webLogoWithText.webp"
 
 const Login = ({ setLoginStatus }) => {
   const navigate = useNavigate();
@@ -28,15 +29,23 @@ const Login = ({ setLoginStatus }) => {
     }
   };
   return (
-    <div className="">
-      <GoogleLogin
-        type="icon"
-        theme="filled_black"
-        shape="circle"
-        onSuccess={responseGoogele}
-        onError={responseGoogele}
-        cookiePolicy="single_host_origin"
-      />
+    <div className="w-full h-screen flex justify-center items-center bg-zinc-800">
+      <div className="flex flex-col items-center gap-y-8 bg-zinc-900 p-16 max-sm:p-8 rounded-3xl shadow-xl ">
+        <div className="w-80 max-sm:w-64">
+          <img src={webLogo} alt="website" />
+        </div>
+        <div className="">
+        <GoogleLogin
+          type="standard"
+          theme="filled_black"
+          shape="circle"
+          size="large"
+          onSuccess={responseGoogele}
+          onError={responseGoogele}
+          cookiePolicy="single_host_origin"
+        />
+        </div>
+      </div>
     </div>
   );
 };
