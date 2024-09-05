@@ -92,7 +92,7 @@ const OpenNote = () => {
                   title: e.target.value,
                 }))
               }
-              className="outline-none bg-zinc-800 py-2 px-4 text-lg"
+              className="w-full outline-none bg-zinc-800 py-2 px-4 text-lg"
             />
             <textarea
               ref={textAreaRef}
@@ -107,7 +107,7 @@ const OpenNote = () => {
                   desc: e.target.value,
                 }))
               }
-              className="outline-none text-base bg-zinc-800 py-2 px-4 resize-none no-scrollbar"
+              className="w-full outline-none text-base bg-zinc-800 py-2 px-4 resize-none no-scrollbar"
               style={{ maxHeight: "60vh", overflowY: "auto" }}
             />
           </div>
