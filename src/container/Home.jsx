@@ -12,7 +12,7 @@ const Home = () => {
         <Background />
         <Foreground />
         <Outlet />
-        <ToastContainer theme="dark" newestOnTop={true} position="bottom-right" />
+        <ToastContainer theme="dark" newestOnTop={true} position="bottom-right" autoClose={3000} />
       </div>
     </NotesProvider>
   );
