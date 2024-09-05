@@ -8,6 +8,7 @@ const OpenNote = () => {
   const textAreaRef = useRef(null);
   const { noteId } = useParams();
   const { notes, setNotes } = useNotes();
+  console.log(noteId);
   console.log(notes);
   const [doc, setDoc] = useState(() => {
     if (notes && noteId) {
@@ -17,7 +18,6 @@ const OpenNote = () => {
       }
       return { title: "", desc: "", image: "" };
   });
-  console.log(doc);
 
   const handleUpdateNote = async () => {
     try {
@@ -62,6 +62,10 @@ const OpenNote = () => {
       textArea?.removeEventListener("input", handleInput);
     };
   });
+
+  useEffect(()=>{
+    console.log(doc);
+  },[doc]);
 
   return (
     <div className="fixed inset-0 z-[9999] flex justify-center items-center bg-black bg-opacity-50">
