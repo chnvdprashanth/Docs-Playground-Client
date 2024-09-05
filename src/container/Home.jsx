@@ -12,7 +12,16 @@ const Home = () => {
         <Background />
         <Foreground />
         <Outlet />
-        <ToastContainer theme="dark" newestOnTop={true} position="bottom-right" autoClose={3000} />
+        <ToastContainer
+          theme="dark"
+          newestOnTop={true}
+          position="bottom-right"
+          autoClose={3000}
+          style={{
+            width: "90%", 
+            maxWidth: "600px",
+          }}
+        />
       </div>
     </NotesProvider>
   );
