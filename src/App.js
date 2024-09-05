@@ -6,11 +6,11 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Home from "./container/Home";
-// import EditNotes from "./container/EditNotes";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Login from "./components/Login";
 import { useGetUser } from "./contexts/User";
 import { REACT_APP_GOOGLE_CLIENT_ID } from "./utils/config";
+import OpenNote from "./components/OpenNote";
 
 const App = () => {
   const clientId = REACT_APP_GOOGLE_CLIENT_ID;
@@ -41,6 +41,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/note/:noteId" element={<OpenNote />} />
     </Routes>
   );
 };

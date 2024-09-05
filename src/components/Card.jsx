@@ -57,7 +57,7 @@ const Card = ({ reference, note, id, notes, setNotes }) => {
       <div className="flex justify-between items-center">
         <FaFileAlt className="w-5 h-4" />
         <div className="flex items-center gap-2">
-          <Link to={`/edit/${id}`}>
+          <Link to={`/note/${id}`}>
             <MdOutlineEdit className="w-5 h-5" />
           </Link>
           <MdDeleteOutline

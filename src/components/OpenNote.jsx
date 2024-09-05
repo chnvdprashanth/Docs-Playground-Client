@@ -1,39 +1,30 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { IoCheckboxOutline, IoImageOutline } from "react-icons/io5";
 import { LuRedo2, LuUndo2 } from "react-icons/lu";
 import { useNote } from "../contexts/Note";
 
-const Notes = ({ setNotes, setToggleNotes }) => {
+const OpenNote = ({ noteId }) => {
   const textAreaRef = useRef(null);
   const { doc, setDoc } = useNote();
 
-  // const [title, setTitle] = useState("");
-  // const [desc, setDesc] = useState("");
-  // const [image, setImage] = useState("");
-
-  const handleCreateNote = async () => {
-    if (doc.title === "" || doc.desc === "") {
-      setToggleNotes(false);
-      return;
-    }
-
+  const handleUpdateNote = async () => {
     try {
-      const res = await fetch("https://docs-playground.onrender.com/", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: doc.title,
-          desc: doc.desc,
-          image: doc.image,
-        }),
-      });
+      const res = await fetch(
+        `https://docs-playground.onrender.com/note/${noteId}`,
+        {
+          method: "PATCH",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: doc.title,
+            desc: doc.desc,
+            image: doc.image,
+          }),
+        }
+      );
       const note = await res.json();
-
-      setNotes((prevNote) => [...prevNote, note]);
-      setToggleNotes(false);
     } catch (err) {}
   };
 
@@ -59,6 +50,7 @@ const Notes = ({ setNotes, setToggleNotes }) => {
   });
 
   return (
+    <div className="w-full h-full flex justify-center items-center bg-transparent">
     <div className="w-full flex flex-col">
       <div className="w-full flex flex-col gap-y-2">
         <input
@@ -104,7 +96,7 @@ const Notes = ({ setNotes, setToggleNotes }) => {
         </div>
         <div className="flex justify-center items-center">
           <p
-            onClick={handleCreateNote}
+            onClick={handleUpdateNote}
             className="text-base cursor-pointer font-normal"
           >
             Close
@@ -112,7 +104,8 @@ const Notes = ({ setNotes, setToggleNotes }) => {
         </div>
       </div>
     </div>
+    </div>
   );
 };
 
-export default Notes;
+export default OpenNote;
