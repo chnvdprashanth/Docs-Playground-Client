@@ -36,10 +36,10 @@ const Notes = ({ setToggleNotes }) => {
 
       setNotes((prevNote) => [...prevNote, note]);
       setToggleNotes(false);
-      toast("Created🎉",{type:"success"})
+      toast("Created🎉", { type: "success" });
     } catch (err) {
-      toast("Failed to create😥",{type:"error"});
-      console.log("Creating note failed: ",err);
+      toast("Failed to create😥", { type: "error" });
+      console.log("Creating note failed: ", err);
     }
   };
 
@@ -65,59 +65,62 @@ const Notes = ({ setToggleNotes }) => {
   });
 
   return (
-    <div className="w-full flex flex-col">
-      <div className="w-full flex flex-col gap-y-2">
-        <input
-          type="text"
-          placeholder="Title here"
-          name="docs-title"
-          id="docs-title"
-          value={doc.title}
-          onChange={(e) =>
-            setDoc((prevDoc) => ({
-              ...prevDoc,
-              title: e.target.value,
-            }))
-          }
-          className="outline-none bg-zinc-800 py-2"
-        />
-        <textarea
-          ref={textAreaRef}
-          type="text"
-          name="docs-text"
-          id="docs-text"
-          placeholder="Take a note..."
-          value={doc.desc}
-          onChange={(e) =>
-            setDoc((prevDoc) => ({
-              ...prevDoc,
-              desc: e.target.value,
-            }))
-          }
-          className="outline-none text-base bg-zinc-800"
-          style={{ resize: "none" }}
-        />
-      </div>
-      <div className="w-full flex items-center gap-x-4 max-sm:gap-x-2 p-2">
-        <div className="w-full flex items-center gap-x-4 max-sm:gap-x-2">
-          <IoImageOutline
-            className="w-6 h-6 cursor-pointer"
-            onClick={() => handleImageInput}
+    <>
+      <div className="w-full flex flex-col">
+        <div className="w-full flex flex-col gap-y-2">
+          <input
+            type="text"
+            placeholder="Title here"
+            name="docs-title"
+            id="docs-title"
+            value={doc.title}
+            onChange={(e) =>
+              setDoc((prevDoc) => ({
+                ...prevDoc,
+                title: e.target.value,
+              }))
+            }
+            className="outline-none bg-zinc-800 py-2"
           />
-          <IoCheckboxOutline className="w-6 h-6 cursor-pointer" />
-          <LuUndo2 className="w-4 h-4 text-white cursor-pointer" />
-          <LuRedo2 className="w-4 h-4 text-white cursor-pointer" />
+          <textarea
+            ref={textAreaRef}
+            type="text"
+            name="docs-text"
+            id="docs-text"
+            placeholder="Take a note..."
+            value={doc.desc}
+            onChange={(e) =>
+              setDoc((prevDoc) => ({
+                ...prevDoc,
+                desc: e.target.value,
+              }))
+            }
+            className="outline-none text-base bg-zinc-800"
+            style={{ resize: "none" }}
+          />
         </div>
-        <div className="flex justify-center items-center">
-          <p
-            onClick={handleCreateNote}
-            className="text-base cursor-pointer font-normal"
-          >
-            Close
-          </p>
+        <div className="w-full flex items-center gap-x-4 max-sm:gap-x-2 p-2">
+          <div className="w-full flex items-center gap-x-4 max-sm:gap-x-2">
+            <IoImageOutline
+              className="w-6 h-6 cursor-pointer"
+              onClick={() => handleImageInput}
+            />
+            <IoCheckboxOutline className="w-6 h-6 cursor-pointer" />
+            <LuUndo2 className="w-4 h-4 text-white cursor-pointer" />
+            <LuRedo2 className="w-4 h-4 text-white cursor-pointer" />
+          </div>
+          <div className="flex justify-center items-center">
+            <p
+              onClick={handleCreateNote}
+              className="text-base cursor-pointer font-normal"
+            >
+              Close
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+      <ToastContainer theme={"dark"} newestOnTop={true} />
+    </>
   );
 };
 
