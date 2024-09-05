@@ -60,7 +60,7 @@ const OpenNote = () => {
 
   return (
     <div className="fixed inset-0 z-[9999] flex justify-center items-center bg-black bg-opacity-50">
-      <div className="w-11/12 md:w-3/5 lg:w-2/5 bg-zinc-900 p-6 rounded-lg shadow-lg">
+      <div className="w-11/12 md:w-3/5 lg:w-2/5 bg-zinc-800 p-6 rounded-lg shadow-lg text-zinc-50">
         <div className="flex flex-col gap-y-2">
           <input
             type="text"
@@ -74,7 +74,7 @@ const OpenNote = () => {
                 title: e.target.value,
               }))
             }
-            className="outline-none bg-zinc-800 py-2 px-4 text-lg rounded-md"
+            className="outline-none bg-zinc-800 py-2 px-4 text-lg"
           />
           <textarea
             ref={textAreaRef}
@@ -89,12 +89,12 @@ const OpenNote = () => {
                 desc: e.target.value,
               }))
             }
-            className="outline-none text-base bg-zinc-800 py-2 px-4 rounded-md"
+            className="outline-none text-base bg-zinc-800 py-2 px-4"
             style={{ resize: "none" }}
           />
         </div>
-        <div className="w-full flex items-center gap-x-4 max-sm:gap-x-2 mt-4 p-2">
-          <div className="w-full flex items-center gap-x-4 max-sm:gap-x-2">
+        <div className="w-full flex items-center justify-between gap-x-4 p-2">
+          <div className="w-full flex items-center gap-x-4">
             <IoImageOutline
               className="w-6 h-6 cursor-pointer"
               onClick={() => handleImageInput}
@@ -103,10 +103,10 @@ const OpenNote = () => {
             <LuUndo2 className="w-4 h-4 text-white cursor-pointer" />
             <LuRedo2 className="w-4 h-4 text-white cursor-pointer" />
           </div>
-          <div className="flex justify-center items-center ml-auto">
+          <div className="flex justify-center items-center">
             <p
               onClick={handleUpdateNote}
-              className="text-base cursor-pointer font-normal text-white bg-zinc-700 px-4 py-1 rounded-md"
+              className="text-base cursor-pointer font-normal text-white bg-zinc-800 hover:bg-zinc-600 hover:duration-300 px-4 py-1 rounded-md"
             >
               Save & Close
             </p>
