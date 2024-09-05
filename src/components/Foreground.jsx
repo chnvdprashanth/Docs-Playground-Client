@@ -46,6 +46,7 @@ const Foreground = () => {
             note={note}
             id={note._id}
             key={index}
+            notes={notes}
             setNotes={setNotes}
           />
         ))}

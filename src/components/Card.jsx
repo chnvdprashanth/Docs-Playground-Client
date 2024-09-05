@@ -5,14 +5,13 @@ import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
-import { getDataFromLocalStorage } from "../utils/data";
 
-const Card = ({ reference, note, id, setNotes }) => {
+const Card = ({ reference, note, id, notes, setNotes }) => {
   const [isDownloadActive, setIsDownloadActive] = useState(true);
   const [isDownloadTagVisible, setIsDownloadTagVisible] = useState(false);
   const byteSize = (str) => new Blob([str]).size;
-  
-  const handleDownload = () => {
+
+  const handleDownloadButton = () => {
     if (!isDownloadActive) {
       setIsDownloadActive(true);
       setIsDownloadTagVisible(false);
@@ -34,9 +33,14 @@ const Card = ({ reference, note, id, setNotes }) => {
     URL.revokeObjectURL(link.href);
   };
 
-  const handleDeleteNote = (e) => {
-    localStorage.removeItem(document.getElementById(id).id);
-    setNotes(getDataFromLocalStorage());
+  const handleDeleteNote = async (e) => {
+    try {
+      await fetch(`https://docs-playground.onrender.com/note/${id}`);
+
+      setNotes(notes.filter((n) => n._id !== id));
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -51,7 +55,7 @@ const Card = ({ reference, note, id, setNotes }) => {
         <FaFileAlt className="w-5 h-4" />
         <div className="flex items-center gap-2">
           <Link to={`/edit/${id}`}>
-          <MdOutlineEdit className="w-5 h-5" />
+            <MdOutlineEdit className="w-5 h-5" />
           </Link>
           <MdDeleteOutline
             className="w-5 h-5 cursor-pointer"
@@ -74,11 +78,11 @@ const Card = ({ reference, note, id, setNotes }) => {
                 }
             `}</h5>
           {isDownloadActive ? (
-            <span className="cursor-pointer" onClick={handleDownload}>
+            <span className="cursor-pointer" onClick={handleDownloadButton}>
               <LuDownload />
             </span>
           ) : (
-            <span className="cursor-pointer" onClick={handleDownload}>
+            <span className="cursor-pointer" onClick={handleDownloadButton}>
               <IoClose />
             </span>
           )}
