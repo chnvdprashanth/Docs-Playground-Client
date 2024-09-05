@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useGetUser } from "../contexts/User";
 import webLogo from "../assets/webLogoWithText.webp"
 
-const Login = ({ setLoginStatus }) => {
+const Login = () => {
   const navigate = useNavigate();
   const { setUser } = useGetUser();
 
