@@ -1,70 +1,194 @@
-# Getting Started with Create React App
+# Docs Playground Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend for [**Docs Playground**](https://docs-playground-client.vercel.app/), a web application that allows users to create, edit, and delete documents. It utilizes **Google OAuth** for authentication and communicates with a backend API built with **Node.js** and **Express.js**. The application is styled with **Tailwind CSS** and animations are powered by **Framer Motion**.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+1. [Tech Stack](#tech-stack)
+2. [Features](#features)
+3. [Installation and Setup](#installation-and-setup)
+4. [Environment Variables](#environment-variables)
+5. [Project Structure](#project-structure)
+6. [Google OAuth Integration](#google-oauth-integration)
+7. [Animations](#animations)
+8. [Styling](#styling)
+9. [Deployment](#deployment)
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React.js**: The JavaScript library for building user interfaces.
+- **Framer Motion**: Used for adding smooth animations to enhance user experience.
+- **React Toastify**: Used for toast notifications (e.g., success or error messages).
+- **Google OAuth**: For user authentication, allowing users to sign in using their Google account.
+- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
+- **Fetch API**: For sending and receiving data from the backend API.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+- **Google OAuth Login**: Users can sign in with their Google accounts securely.
+- **Document Management**: Users can create, edit, and delete documents.
+- **User Profile**: Displays user profile picture and name retrieved from Google.
+- **Responsive Design**: Fully optimized for desktop, tablet, and mobile screens.
+- **Toast Notifications**: Provides feedback for user actions such as document creation, errors, or successful logins.
+- **Smooth Animations**: Framer Motion is used to add subtle and engaging animations throughout the application.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation and Setup
 
-### `npm run build`
+1. **Clone the Repository**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   First, clone the frontend repository to your local machine using Git.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   git clone https://github.com/your-username/docs-playground-frontend.git
+   ```
+2. **Navigate to the Frontend Directory**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   Move into the frontend directory (`client`) to install dependencies and start the development server.
 
-### `npm run eject`
+   ```bash
+   cd docs-playground-client
+   ```
+3. **Install Dependencies**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   Run the following command to install necessary packages.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   npm install
+   ```
+4. **Create a `.env` file**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   Create a `.env` file in the root of the client directory and add the following:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+REACT_APP_GOOGLE_CLIENT_ID=your-google-client-id
+REACT_APP_API_BASE_URL=https://your-backend-url.com
+```
+5. **Start the Development Server**
 
-## Learn More
+   Run the following command to start the development server.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```bash
+   npm start
+   ```
+   The app will start at `http://localhost:3000`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Environment Variables
 
-### Code Splitting
+- `REACT_APP_GOOGLE_CLIENT_ID`: Your Google OAuth Client ID.
+- `REACT_APP_API_BASE_URL`: The base URL for the backend API.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Project Structure
 
-### Analyzing the Bundle Size
+```bash
+client
+│
+├── public
+│   ├── index.html
+│   └── ...
+├── src
+│   ├── components
+│   ├── context
+│   ├── pages
+│   ├── App.js
+│   ├── index.js
+│   └── ...
+├── .env
+├── package.json
+└── ...
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- `public`: Contains the static files.
+- `src/components`: React components used throughout the app.
+- `src/context`: Contains the context providers and hooks.
+- `src/container`: Different pages (e.g., Home).
+- `src/App.js`: The main App component.
+- `src/index.js`: The entry point for the React app.
 
-### Making a Progressive Web App
+## Google OAuth Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Wrap your application with `GoogleOAuthProvider`:
 
-### Advanced Configuration
+```jsx
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<GoogleOAuthProvider clientId="<your_client_id>">...</GoogleOAuthProvider>;
+```
 
-### Deployment
+Use `<GoogleLogin />` in Login Component :
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+**Sign In With Google**
+```jsx
+import { GoogleLogin } from '@react-oauth/google';
 
-### `npm run build` fails to minify
+<GoogleLogin
+  onSuccess={credentialResponse => {
+    console.log(credentialResponse);
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+/>;
+```
+Once a user successfully logs in, their profile information is passed to the backend.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Animations
+
+The app uses **Framer Motion** for smooth animations, including page transitions and component entry animations.
+
+### Example of a Simple Animation
+
+```jsx
+import { motion } from "framer-motion";
+
+<motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  exit={{ opacity: 0 }}
+>
+  <YourComponent />
+</motion.div>
+```
+
+## Styling
+
+**Tailwind CSS** is used for styling. You can add styles by using the utility classes provided by Tailwind directly in your JSX.
+
+**Example**
+```jsx
+<div className="bg-gray-800 text-white p-4 rounded-lg">
+  This is a styled component.
+</div>
+```
+
+## Deployment
+The frontend is deployed using **Vercel**. Follow these steps to deploy:
+
+- Push your changes to GitHub.
+- Connect your GitHub repository to [Vercel](https://vercel.com).
+- Vercel will handle the build and deployment process automatically.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE). See the [LICENSE](LICENSE) file for details.
+
+## Contributing
+
+We welcome contributions to this project. If you want to contribute, please follow these guidelines:
+
+-  Fork the repository.
+- Create a new branch for your changes.
+- Make your changes and test thoroughly.
+- Submit a pull request with a description of your changes.
+
+## Contact
+
+If you have any questions or need further assistance, feel free to reach out:
+
+- Email: chnvdprashanth@gmail.com
+- GitHub: [chnvdprashanth](https://github.com/chnvdprashanth)
+
+## Acknowledgements
+
+- [React](https://reactjs.org/) - The JavaScript library used for building the frontend.
+- [Cloudinary](https://cloudinary.com/) - Image management and hosting service.
+- [Google OAuth](https://developers.google.com/identity) - Authentication service.
